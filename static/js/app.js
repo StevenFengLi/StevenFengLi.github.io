@@ -62,7 +62,7 @@ $.getJSON('static/map/china.json', function(data){
 
 //地图点击事件
 chart.on('click', function (params) {
-	console.log( params );
+    console.log( params );
 	if( params.name in provinces ){
 		//如果点击的是34个省、市、自治区，绘制选中地区的二级地图
 		$.getJSON('static/map/province/'+ provinces[params.name] +'.json', function(data){
@@ -78,7 +78,7 @@ chart.on('click', function (params) {
 	}else if( params.seriesName in provinces ){
 		//如果是【直辖市/特别行政区】只有二级下钻
 		if(  special.indexOf( params.seriesName ) >=0  ){
-			renderMap('china',mapdata);
+			window.location.href = "selection.html";
 		}else{
 			//显示县级地图
 			$.getJSON('static/map/city/'+ cityMap[params.name] +'.json', function(data){
@@ -93,7 +93,7 @@ chart.on('click', function (params) {
 			});	
 		}	
 	}else{
-		renderMap('china',mapdata);
+		window.location.href = "selection.html";
 	}
 });
 
@@ -101,9 +101,9 @@ chart.on('click', function (params) {
 var option = {
 	backgroundColor: '#000',
     title : {
-        text: 'Echarts3 中国地图下钻至县级',
+        text: 'Smart City: 中国地图',
         subtext: '三级下钻',
-        link:'http://www.ldsun.com',
+        // link:'http://www.ldsun.com',
         left: 'center',
         textStyle:{
             color: '#fff',
